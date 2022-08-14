@@ -77,6 +77,10 @@ const transferSol = async () => {
   // Get Keypair from Secret Key
   var from = Keypair.fromSecretKey(DEMO_FROM_SECRET_KEY);
 
+  // Making a keypair and getting the private key
+  // const newPair = Keypair.generate();
+  // console.log(newPair);
+
   // Aidrop 2 SOL to Sender wallet
   console.log('Airdopping some SOL to Sender wallet!');
   const fromAirDropSignature = await connection.requestAirdrop(
@@ -118,8 +122,7 @@ const transferSol = async () => {
   console.log('Signature is ', signature);
 };
 
-// Show the wallet balance of from and to wallets
-// before and after airdrop to the Sender wallet
+// Show the wallet balance of from and to wallets before and after airdrop to the Sender wallet
 const mainFunction = async () => {
   await getFromWalletBalance();
   await getToWalletBalance();
