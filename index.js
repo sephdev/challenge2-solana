@@ -21,15 +21,15 @@ const DEMO_FROM_SECRET_KEY = new Uint8Array([
 // Generate another Keypair (account we'll be sending to)
 const to = Keypair.generate();
 
-// Extract the public and private key from the (to) keypair
+// Extract the public and private key from the "to" keypair
 const toPublicKey = new PublicKey(to.publicKey).toString();
 const toPrivateKey = to.secretKey;
 
 // Connect to Devnet and show new generated Keypair (to) Public Key
 // const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-// console.log('Public key of generated (to) receiver keypair:', toPublicKey);
+// console.log('Public key of generated "to" (Receiver) keypair:', toPublicKey);
 
-// Get the balance of from (sender) wallet
+// Get the balance of "from" (Sender) wallet
 const getFromWalletBalance = async () => {
   try {
     // Connect to Devnet
@@ -51,14 +51,14 @@ const getFromWalletBalance = async () => {
   }
 };
 
-// Get the balance of to (receiver) wallet
+// Get the balance of "to" (Receiver) wallet
 const getToWalletBalance = async () => {
   try {
     // Connect to Devnet
     const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
     // console.log('Connection object is:', connection);
 
-    // Make a wallet from to (receiver) and get its balance
+    // Make a wallet from "to" (Receiver) and get its balance
     const toWallet = await Keypair.fromSecretKey(toPrivateKey);
     const toWalletBalance = await connection.getBalance(
       new PublicKey(toWallet.publicKey)
@@ -71,7 +71,7 @@ const getToWalletBalance = async () => {
   }
 };
 
-// Combine from and to wallets get balance functions
+// Combine "from" and "to" wallets get-balance-functions
 const getAllWalletsBalance = async () => {
   await getFromWalletBalance();
   await getToWalletBalance();
@@ -122,8 +122,8 @@ const transferSol = async () => {
   console.log('Signature is ', signature);
 };
 
-// Show the wallet balance of from and to wallets
-// before and after airdrop to the Sender wallet
+// Show the wallet balance of "from" and "to" wallets
+// before and after airdrop to the "from" (Sender) wallet
 const mainFunction = async () => {
   await getAllWalletsBalance();
   await transferSol();
