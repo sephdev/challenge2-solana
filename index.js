@@ -26,8 +26,8 @@ const toPublicKey = new PublicKey(to.publicKey).toString();
 const toPrivateKey = to.secretKey;
 
 // Connect to Devnet and show new generated Keypair (to) Public Key
-const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-console.log('Public key of generated (to) receiver keypair:', toPublicKey);
+// const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+// console.log('Public key of generated (to) receiver keypair:', toPublicKey);
 
 // Get the balance of from (sender) wallet
 const getFromWalletBalance = async () => {
