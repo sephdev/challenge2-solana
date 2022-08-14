@@ -72,9 +72,9 @@ const getToWalletBalance = async () => {
 };
 
 // Combine from and to wallets get balance functions
-const getAllWalletsBalance = () => {
-  getFromWalletBalance();
-  getToWalletBalance();
+const getAllWalletsBalance = async () => {
+  await getFromWalletBalance();
+  await getToWalletBalance();
 };
 
 const transferSol = async () => {
