@@ -18,59 +18,6 @@ const DEMO_FROM_SECRET_KEY = new Uint8Array([
   235, 57, 201, 175, 231, 202, 83, 98, 1, 54, 216, 146, 136, 244, 246,
 ]);
 
-// Get the balance of from (sender) wallet
-const getFromWalletBalance = async () => {
-  try {
-    // Connect to Devnet
-    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-    // console.log('Connection object is:', connection);
-
-    // Make a wallet from DEMO_FROM_SECRET_KEY and get its balance
-    const fromWallet = await Keypair.fromSecretKey(DEMO_FROM_SECRET_KEY);
-    const fromWalletBalance = await connection.getBalance(
-      new PublicKey(fromWallet.publicKey)
-    );
-    console.log(
-      `from Wallet balance: ${
-        parseInt(fromWalletBalance) / LAMPORTS_PER_SOL
-      } SOL`
-    );
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// Generate another Keypair (account we'll be sending to)
-const to = Keypair.generate();
-
-// Extract the public and private key from the (to) keypair
-const toPublicKey = new PublicKey(to.publicKey).toString();
-const toPrivateKey = to.secretKey;
-
-// Connect to Devnet and Check to see new generated Keypair Public Key
-// const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-// console.log('Public key of the generated TO keypair', toPublicKey);
-
-// Get the balance of to (receiver) wallet
-const getToWalletBalance = async () => {
-  try {
-    // Connect to Devnet
-    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-    // console.log('Connection object is:', connection);
-
-    // Make a wallet from to (receiver) and get its balance
-    const toWallet = await Keypair.fromSecretKey(toPrivateKey);
-    const toWalletBalance = await connection.getBalance(
-      new PublicKey(toWallet.publicKey)
-    );
-    console.log(
-      `to Wallet balance: ${parseInt(toWalletBalance) / LAMPORTS_PER_SOL} SOL`
-    );
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 const transferSol = async () => {
   const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
@@ -78,8 +25,8 @@ const transferSol = async () => {
   var from = Keypair.fromSecretKey(DEMO_FROM_SECRET_KEY);
 
   // Making a keypair and getting the private key
-  // const newPair = Keypair.generate();
-  // console.log(newPair);
+  const newPair = Keypair.generate();
+  console.log(newPair);
 
   // Aidrop 2 SOL to Sender wallet
   console.log('Airdopping some SOL to Sender wallet!');
@@ -101,11 +48,6 @@ const transferSol = async () => {
 
   console.log('Airdrop completed for the Sender account');
 
-  // Get (from) wallet balance
-  await getFromWalletBalance();
-  // Get (to) wallet balance
-  await getToWalletBalance();
-
   // Send money from "from" wallet and into "to" wallet
   var transaction = new Transaction().add(
     SystemProgram.transfer({
@@ -124,11 +66,7 @@ const transferSol = async () => {
 
 // Show the wallet balance of from and to wallets before and after airdrop to the Sender wallet
 const mainFunction = async () => {
-  await getFromWalletBalance();
-  await getToWalletBalance();
   await transferSol();
-  await getFromWalletBalance();
-  await getToWalletBalance();
 };
 
 mainFunction();

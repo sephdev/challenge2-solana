@@ -12,10 +12,10 @@ const {
 } = require('@solana/web3.js');
 
 const DEMO_FROM_SECRET_KEY = new Uint8Array([
-  144, 223, 113, 181, 168, 15, 197, 155, 168, 112, 153, 252, 171, 241, 70, 199,
-  147, 50, 151, 215, 109, 61, 125, 21, 247, 98, 153, 9, 255, 17, 232, 11, 116,
-  30, 117, 208, 10, 60, 138, 141, 125, 52, 169, 154, 248, 199, 209, 201, 28,
-  235, 57, 201, 175, 231, 202, 83, 98, 1, 54, 216, 146, 136, 244, 246,
+  194, 194, 192, 65, 138, 244, 89, 50, 23, 119, 123, 216, 208, 71, 242, 39, 202,
+  65, 65, 100, 37, 37, 196, 198, 220, 90, 153, 26, 39, 43, 30, 170, 125, 104,
+  116, 132, 55, 111, 69, 119, 114, 58, 53, 35, 235, 123, 102, 44, 158, 109, 104,
+  126, 134, 15, 137, 59, 192, 119, 40, 60, 192, 189, 14, 240,
 ]);
 
 // Generate another Keypair (account we'll be sending to)
@@ -26,8 +26,8 @@ const toPublicKey = new PublicKey(to.publicKey).toString();
 const toPrivateKey = to.secretKey;
 
 // Connect to Devnet and show new generated Keypair (to) Public Key
-// const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-// console.log('Public key of the generated (to) keypair', toPublicKey);
+const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+console.log('Public key of generated (to) receiver keypair:', toPublicKey);
 
 // Get the balance of from (sender) wallet
 const getFromWalletBalance = async () => {
@@ -103,7 +103,7 @@ const transferSol = async () => {
 
   console.log('Airdrop completed for the Sender account');
 
-  // Get all wallets balances
+  // Get all wallets balances after airdrop completed
   await getAllWalletsBalance();
 
   // Send money from "from" wallet and into "to" wallet
