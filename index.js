@@ -71,6 +71,11 @@ const getToWalletBalance = async () => {
   }
 };
 
+const getAllWalletsBalance = async () => {
+  await getFromWalletBalance();
+  await getToWalletBalance();
+};
+
 const transferSol = async () => {
   const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
@@ -97,10 +102,8 @@ const transferSol = async () => {
 
   console.log('Airdrop completed for the Sender account');
 
-  // Get (from) wallet balance
-  await getFromWalletBalance();
-  // Get (to) wallet balance
-  await getToWalletBalance();
+  // Get all wallets balances
+  await getAllWalletsBalance();
 
   // Send money from "from" wallet and into "to" wallet
   var transaction = new Transaction().add(
@@ -121,11 +124,9 @@ const transferSol = async () => {
 // Show the wallet balance of from and to wallets
 // before and after airdrop to the Sender wallet
 const mainFunction = async () => {
-  await getFromWalletBalance();
-  await getToWalletBalance();
+  await getAllWalletsBalance();
   await transferSol();
-  await getFromWalletBalance();
-  await getToWalletBalance();
+  await getAllWalletsBalance();
 };
 
 mainFunction();
