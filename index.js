@@ -18,6 +18,17 @@ const DEMO_FROM_SECRET_KEY = new Uint8Array([
   235, 57, 201, 175, 231, 202, 83, 98, 1, 54, 216, 146, 136, 244, 246,
 ]);
 
+// Generate another Keypair (account we'll be sending to)
+const to = Keypair.generate();
+
+// Extract the public and private key from the (to) keypair
+const toPublicKey = new PublicKey(to.publicKey).toString();
+const toPrivateKey = to.secretKey;
+
+// Connect to Devnet and show new generated Keypair (to) Public Key
+// const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+// console.log('Public key of the generated (to) keypair', toPublicKey);
+
 // Get the balance of from (sender) wallet
 const getFromWalletBalance = async () => {
   try {
@@ -39,17 +50,6 @@ const getFromWalletBalance = async () => {
     console.log(err);
   }
 };
-
-// Generate another Keypair (account we'll be sending to)
-const to = Keypair.generate();
-
-// Extract the public and private key from the (to) keypair
-const toPublicKey = new PublicKey(to.publicKey).toString();
-const toPrivateKey = to.secretKey;
-
-// Connect to Devnet and Check to see new generated Keypair Public Key
-// const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-// console.log('Public key of the generated To (receiver) keypair', toPublicKey);
 
 // Get the balance of to (receiver) wallet
 const getToWalletBalance = async () => {
