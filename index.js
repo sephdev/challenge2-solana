@@ -123,7 +123,7 @@ const transferSol = async () => {
 };
 
 // Show the wallet balance of "from" and "to" wallets
-// before and after airdrop to the "from" (Sender) wallet
+// before and after airdropping SOL to the "from" (Sender) wallet
 const mainFunction = async () => {
   await getAllWalletsBalance();
   await transferSol();
