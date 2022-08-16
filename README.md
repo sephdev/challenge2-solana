@@ -7,3 +7,6 @@ npm install   --save @solana/web3.js
 
 **Run using node** <br />
 $node index.js
+
+###https://solscan.io/?cluster=devnet
+Useful link to explore Solana devnet 
