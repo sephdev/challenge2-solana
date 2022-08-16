@@ -6,7 +6,7 @@ Metacrafters Module 2: Challenge 2 - Airdrop and Transfer SOL to From and To Wal
 npm install   --save @solana/web3.js
 
 **Run using node** <br />
-$node index.js
+$ node index.js
 
-###https://solscan.io/?cluster=devnet
+### https://solscan.io/?cluster=devnet
 Useful link to explore Solana devnet 
